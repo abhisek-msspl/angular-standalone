@@ -15,7 +15,7 @@ export class EncryptionService {
    *
    * @developer Abhisek Dhua
    */
-  encryptUsingAES256(request: string) {
+  encryptUsingAES256(request: { [key: string]: any } | any) {
     const _key = CryptoJS.enc.Utf8.parse(this.saltKey);
     const _iv = CryptoJS.enc.Utf8.parse(this.saltKey);
 

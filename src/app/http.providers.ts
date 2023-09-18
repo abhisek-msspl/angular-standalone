@@ -1,6 +1,7 @@
 import {
   httpErrorHandlerInterceptorFn,
   httpHeaderHandlerInterceptorFn,
+  httpSuccessHandlerInterceptorFn,
 } from '@core/interceptors';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
@@ -28,6 +29,7 @@ export const HttpProviders = [
     withInterceptors([
       httpErrorHandlerInterceptorFn,
       httpHeaderHandlerInterceptorFn,
+      httpSuccessHandlerInterceptorFn,
     ])
   ),
 ];
