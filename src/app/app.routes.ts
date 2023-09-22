@@ -1,16 +1,10 @@
 import { Routes } from '@angular/router';
 import { hasNotLoginGuard, isLoginGuard } from '@core/guards';
-import {
-  WebLayoutComponent,
-  // AuthLayoutComponent,
-  // AdminLayoutComponent,
-} from '@core/layouts';
 
 export const routes: Routes = [
   {
     path: '',
     canActivate: [hasNotLoginGuard],
-    // component: AuthLayoutComponent,
     loadComponent: () =>
       import(
         './core/layouts/auth-layouts/auth-layout/auth-layout.component'
@@ -23,7 +17,6 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [isLoginGuard],
-    // component: AdminLayoutComponent,
     loadComponent: () =>
       import(
         './core/layouts/admin-layouts/admin-layout/admin-layout.component'
@@ -36,7 +29,10 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [isLoginGuard],
-    component: WebLayoutComponent,
+    loadComponent: () =>
+      import('./core/layouts/web-layouts/web-layout/web-layout.component').then(
+        c => c.WebLayoutComponent
+      ),
     loadChildren: () =>
       import('./pages/web-pages/web-pages.routes').then(r => r.webPagesRoutes),
   },

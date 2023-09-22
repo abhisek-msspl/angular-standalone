@@ -14,7 +14,7 @@ export class MiddleControlClickDirective {
    * @developer Abhisek Dhua
    */
   @HostListener('mouseup', ['$event'])
-  onMouseUp(event: MouseEvent) {
+  public onMouseUp(event: MouseEvent) {
     if (event.button === 1 || (event.ctrlKey && event.button === 0)) {
       event.preventDefault();
       event.stopPropagation();
@@ -31,7 +31,7 @@ export class MiddleControlClickDirective {
    * @developer Abhisek Dhua
    */
   @HostListener('wheel', ['$event'])
-  onWheel(event: WheelEvent) {
+  public onWheel(event: WheelEvent) {
     event.preventDefault();
     event.stopPropagation();
   }

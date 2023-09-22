@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CommonService {
-  // constructor() {}
-
   /* token backup for reuse token */
   private _tokenSubject = new BehaviorSubject<string | null>(null);
   public tokenSource$ = this._tokenSubject.asObservable();

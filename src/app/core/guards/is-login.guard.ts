@@ -1,18 +1,9 @@
-import {
-  Router,
-  UrlTree,
-  CanActivateFn,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-} from '@angular/router';
 import { Observable } from 'rxjs';
 import { inject } from '@angular/core';
 import { AuthenticationService } from '../authentication';
+import { Router, UrlTree, CanActivateFn } from '@angular/router';
 
-export const isLoginGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-):
+export const isLoginGuard: CanActivateFn = ():
   | Observable<boolean | UrlTree>
   | Promise<boolean | UrlTree>
   | boolean

@@ -24,8 +24,9 @@ export function fileUploadValidation(
   fileSize: number,
   fileSizeType: 'kb' | 'mb',
   fileTypes: string[]
-): IValidationError | null {
+): IValidationError[] {
   fileSize = fileSize || 1;
+  const validationInfo: IValidationError[] = [];
   const files = (event.target as HTMLInputElement).files as FileList;
 
   if (files.length > 0) {
@@ -35,8 +36,8 @@ export function fileUploadValidation(
       const _fileName = file.name; // file name
       const _fileSize = file.size; // file size
       const _fileTypes = fileTypes; // preferred extensions
-      const _sizeInMB = file.size / (1024 * 1024);
-      const _sizeInKB = file.size / 1024;
+      const _sizeInMB = _fileSize / (1024 * 1024);
+      const _sizeInKB = _fileSize / 1024;
 
       const _fileExtension = _fileName
         .split('.')
@@ -46,27 +47,16 @@ export function fileUploadValidation(
       const _isSizeExceeds: boolean =
         fileSizeType === 'mb' ? _sizeInMB > fileSize : _sizeInKB > fileSize;
 
-      // OR together the accepted extensions and NOT it. Then OR the size cond.
-      if (!_isMatchedExt || _isSizeExceeds) {
-        /**
-         * !avoid this due to Object Literal Shorthand Syntax
-         * ! _fileName: _fileName to _fileName
-         * !_fileSize: _fileSize to _fileSize
-         * *This rule enforces the use of the shorthand syntax
-         */
-        return {
-          _fileName,
-          _fileSize,
-          _isMatchedExt,
-          _isSizeExceeds,
-        };
-      } else {
-        return null;
-      }
+      validationInfo.push({
+        _fileName,
+        _fileSize,
+        _isMatchedExt,
+        _isSizeExceeds,
+      });
     }
-    return null;
+    return validationInfo;
   } else {
-    return null;
+    return validationInfo;
   }
 }
 
