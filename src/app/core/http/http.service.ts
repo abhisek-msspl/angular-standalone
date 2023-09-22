@@ -9,7 +9,7 @@ interface IRequestOptions {
   responseType?: 'json';
   reportProgress?: boolean;
   withCredentials?: boolean;
-  observe?: 'body' | undefined;
+  observe?: 'body';
 }
 
 interface IResponse {

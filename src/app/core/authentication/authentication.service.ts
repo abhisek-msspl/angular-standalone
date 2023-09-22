@@ -110,7 +110,7 @@ export class AuthenticationService {
    * @developer Abhisek Dhua
    */
   private getUser(): IAuthResponse {
-    const user = this._cookieService.get(this.credentials) as string;
+    const user = this._cookieService.get(this.credentials);
     const savedCredentials: IAuthResponse =
       user !== '' ? JSON.parse(user) : null;
     // take token backup
